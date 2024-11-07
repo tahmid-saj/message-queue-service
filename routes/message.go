@@ -40,7 +40,7 @@ func receiveMessage(context *gin.Context) {
 	context.JSON(http.StatusOK, res)
 }
 
-func DeleteMessage(context *gin.Context) {
+func deleteMessage(context *gin.Context) {
 	queueName := context.Param("queueName")
 	receiptHandle := context.Param("receiptHandle")
 

@@ -17,9 +17,9 @@ func RegisterRoutes(server *gin.Engine) {
 
 	// message operations
 	// ReceiveMessage
-	server.GET("/queues/:queueName/messages")
+	server.GET("/queues/:queueName/messages", receiveMessage)
 	// SendMessage
-	server.POST("/queues/:queueName/messages")
+	server.POST("/queues/:queueName/messages", sendMessage)
 	// DeleteMessage
-	server.DELETE("/queues/:queueName/messages/:receiptHandle")
+	server.DELETE("/queues/:queueName/messages/:receiptHandle", deleteMessage)
 }
