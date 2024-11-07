@@ -100,7 +100,7 @@ func DeleteQueue(queueName string) (bool, error) {
 	return true, nil
 }
 
-func ConfigureVisibilityTimeout(queueName, receiptHandleMessage string, visibilityDuration int) (bool, error) {
+func ConfigureVisibilityTimeout(queueName, receiptHandle string, visibilityDuration int) (bool, error) {
 	if visibilityDuration < 0 { visibilityDuration = 0 }
 	if visibilityDuration > 12 * 60 * 60 { visibilityDuration = 12 * 60 * 60 }
 
@@ -121,7 +121,7 @@ func ConfigureVisibilityTimeout(queueName, receiptHandleMessage string, visibili
 	queueUrl := result.QueueUrl
 
 	_, err = svc.ChangeMessageVisibility(&sqs.ChangeMessageVisibilityInput{
-		ReceiptHandle:     &receiptHandleMessage,
+		ReceiptHandle:     &receiptHandle,
 		QueueUrl:          queueUrl,
 		VisibilityTimeout: aws.Int64(int64(visibilityDuration)),
 	})

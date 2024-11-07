@@ -99,7 +99,7 @@ func ReceiveMessage(queueName string, visibilityTimeout int) (*sqs.Message, erro
 	return &message, nil
 }
 
-func DeleteMessage(queueName, receiptHandleMessage string) (bool, error) {
+func DeleteMessage(queueName, receiptHandle string) (bool, error) {
 	sess := session.Must(session.NewSessionWithOptions(session.Options{
 		SharedConfigState: session.SharedConfigEnable,
 	}))
@@ -118,7 +118,7 @@ func DeleteMessage(queueName, receiptHandleMessage string) (bool, error) {
 
 	_, err = svc.DeleteMessage(&sqs.DeleteMessageInput{
 		QueueUrl: queueUrl,
-		ReceiptHandle: &receiptHandleMessage,
+		ReceiptHandle: &receiptHandle,
 	})
 	if err != nil {
 		log.Println(err)
