@@ -33,7 +33,7 @@ func getQueueURL(context *gin.Context) {
 func createQueue(context *gin.Context) {
 	var createQueueInput models.CreateQueueInput
 
-	err := context.ShouldBindJSON(createQueueInput)
+	err := context.ShouldBindJSON(&createQueueInput)
 	if err != nil {
 		context.JSON(http.StatusBadRequest, gin.H{"message": "could not parse queue creation input"})
 		return
@@ -51,7 +51,7 @@ func createQueue(context *gin.Context) {
 func configureVisibilityTimeout(context *gin.Context) {
 	var configureVisibilityTimeoutInput models.ConfigureVisibilityTimeoutInput
 
-	err := context.ShouldBindJSON(configureVisibilityTimeoutInput)
+	err := context.ShouldBindJSON(&configureVisibilityTimeoutInput)
 	if err != nil {
 		context.JSON(http.StatusBadRequest, gin.H{"message": "could not parse queue configuration input"})
 		return
